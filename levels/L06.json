@@ -1,0 +1,66 @@
+{
+  "id": "L06",
+  "order": 6,
+  "title": "Mind the Order",
+  "concept": "planning",
+  "intro": "A paint sticks to the block, not the square. Moving a painted block carries its color along.",
+  "hint": "Paint the top left blue before you swap it away.",
+  "start": [
+    [
+      "R.",
+      "G.",
+      "B."
+    ],
+    [
+      "Y.",
+      "W.",
+      "R."
+    ],
+    [
+      "G.",
+      "B.",
+      "Y."
+    ]
+  ],
+  "target": [
+    [
+      "Y.",
+      "R.",
+      "B."
+    ],
+    [
+      "Y.",
+      "G.",
+      "G."
+    ],
+    [
+      "G.",
+      "B.",
+      "B."
+    ]
+  ],
+  "moves": [
+    "swap",
+    "paint",
+    "rotate"
+  ],
+  "palette": [
+    "R",
+    "G",
+    "B",
+    "Y",
+    "W",
+    "K"
+  ],
+  "helpers": "none",
+  "par": 4,
+  "reference": {
+    "helpers": "",
+    "proof": [
+      "paint (0, 0) blue",
+      "swap (0, 0) (2, 2)",
+      "swap (0, 1) (1, 2)",
+      "paint (1, 1) green"
+    ]
+  }
+}

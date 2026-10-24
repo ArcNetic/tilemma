@@ -1,0 +1,224 @@
+/* Design tokens for the plain neutral palette with one blue accent.
+   Dark is the default and applies even without JavaScript. Light is selected with
+   <html data-theme="light"> (set before first paint by the inline script in index.html). */
+
+:root {
+  /* Type */
+  --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-ui);
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --fs-xs: 0.75rem; /* 12 */
+  --fs-sm: 0.8125rem; /* 13 */
+  --fs-md: 0.9375rem; /* 15 */
+  --fs-lg: 1.125rem; /* 18 */
+  --fs-xl: 1.5rem; /* 24 */
+  --fs-2xl: 2rem; /* 32 */
+  --fs-3xl: 3rem; /* 48 */
+  --lh-tight: 1.2;
+  --lh-snug: 1.35;
+  --lh-body: 1.5;
+
+  /* Space (4 px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* Radius */
+  --radius-1: 4px;
+  --radius-2: 6px;
+  --radius-3: 8px;
+  --radius-4: 10px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.6, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.2, 1.4, 0.4, 1);
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 400ms;
+
+  /* Layers */
+  --z-scrim: 20;
+  --z-coach: 25;
+  --z-notice: 26;
+  --z-drawer: 30;
+  --z-overlay: 40;
+
+  /* Theme: dark (default) */
+  color-scheme: dark;
+
+  --surface-0: #0f1115; /* page */
+  --surface-1: #14171c; /* stage: the sheet the board sits on */
+  --surface-2: #1a1d23; /* panes */
+  --surface-3: #23272f; /* raised: buttons, chips, inset cards */
+  --surface-4: #2a2f38; /* overlay: dialogs, popups */
+  --grid-line: #1e222a;
+
+  --text-1: #e8eaed;
+  --text-2: #b4bac4;
+  --text-3: #8f97a4;
+
+  --border-1: #2e333c;
+  --border-2: #464d59;
+
+  --accent-fill: #2563eb; /* primary buttons, the amber rule */
+  --accent-on: #ffffff; /* text on the accent fill */
+  --accent-fg: #7aa7ff; /* accent as text, ring or border on a surface */
+  --accent-wash: rgba(96, 150, 255, 0.14);
+  --star: #f5b73b;
+
+  --state-success-fg: #5ee0a0;
+  --state-success-bg: rgba(94, 224, 160, 0.12);
+  --state-success-border: #5ee0a0;
+  --state-error-fg: #ff6b6b;
+  --state-error-bg: rgba(255, 92, 92, 0.13);
+  --state-error-border: #ff6b6b;
+  --state-warning-fg: #ff9f5a;
+  --state-warning-bg: rgba(255, 159, 90, 0.13);
+  --state-warning-border: #ff9f5a;
+  --state-info-fg: #6cb6ff;
+  --state-info-bg: rgba(108, 182, 255, 0.12);
+  --state-info-border: #6cb6ff;
+
+  --block-R: #d93a45;
+  --block-G: #5fd08c;
+  --block-B: #2f6bf0;
+  --block-Y: #f8d24a;
+  --block-P: #b9a0ff;
+  --block-O: #ee7c1c;
+  --block-W: #eef2f8;
+  --block-K: #0a101c;
+
+  --editor-bg: #13161b;
+  --editor-gutter: #1a1d23;
+  --editor-active: rgba(96, 150, 255, 0.10);
+  --syntax-keyword: #7aa7ff;
+  --syntax-color: #ff9ec4;
+  --syntax-number: #7cc4ff;
+  --syntax-type: #5ee0c8;
+  --syntax-comment: #8f97a4;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-3: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --scrim: rgba(0, 0, 0, 0.55);
+
+  /* Board: the tray the tiles sit in, and the tiles' own bevel */
+  --tray: #0c0e12;
+  --tray-slot: #07080b;
+  --tray-edge: #272c35;
+  --bevel-light: rgba(255, 255, 255, 0.34);
+  --bevel-dark: rgba(0, 0, 0, 0.26);
+  --tile-drop: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --tile-lift: 0 12px 18px rgba(0, 0, 0, 0.55);
+  --block-K-edge: #6f84ad;
+  --glyph-light: #ffffff;
+  --glyph-dark: #10151f;
+  --tag-bg: rgba(7, 12, 22, 0.68);
+
+  /* Solid fills for small status chips on tiles, with the glyph colour that reads on them */
+  --state-error-solid: #ff6b6b;
+  --state-error-on: #1a0a0a;
+  --state-warning-solid: #ff9f5a;
+  --state-warning-on: #1c0f03;
+
+  --accent-gradient: var(--accent-fill);
+  --accent-gradient-soft: var(--accent-wash);
+  --glass: var(--surface-1);
+  --glass-border: var(--border-1);
+  --glow: 0 0 0 3px var(--accent-wash);
+
+  --confetti-0: var(--block-Y);
+  --confetti-1: var(--block-B);
+  --confetti-2: var(--block-R);
+  --confetti-3: var(--block-G);
+  --confetti-4: var(--block-P);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --surface-0: #f4f5f7;
+  --surface-1: #f9fafb;
+  --surface-2: #ffffff;
+  --surface-3: #eef0f3;
+  --surface-4: #ffffff;
+  --grid-line: #e4e7ec;
+
+  --text-1: #15181d;
+  --text-2: #454c58;
+  --text-3: #5b6370;
+
+  --border-1: #d8dce3;
+  --border-2: #a4abb8;
+
+  --accent-fill: #2563eb;
+  --accent-on: #ffffff;
+  --accent-fg: #1d4ed8;
+  --accent-wash: rgba(37, 99, 235, 0.09);
+  --star: #e0a010;
+
+  --state-success-fg: #0f6e47;
+  --state-success-bg: rgba(15, 110, 71, 0.1);
+  --state-success-border: #1f9b66;
+  --state-error-fg: #b3262d;
+  --state-error-bg: rgba(198, 40, 40, 0.09);
+  --state-error-border: #d03a3a;
+  --state-warning-fg: #9a4b00;
+  --state-warning-bg: rgba(200, 100, 10, 0.1);
+  --state-warning-border: #d4731a;
+  --state-info-fg: #1456a8;
+  --state-info-bg: rgba(26, 95, 180, 0.09);
+  --state-info-border: #2b73cc;
+
+  --block-R: #b81f35;
+  --block-G: #46b46e;
+  --block-B: #1d4ed8;
+  --block-Y: #f5c518;
+  --block-P: #a58bff;
+  --block-O: #e8730c;
+  --block-W: #ffffff;
+  --block-K: #141b2b;
+
+  --editor-bg: #ffffff;
+  --editor-gutter: #f1f3f6;
+  --editor-active: rgba(37, 99, 235, 0.07);
+  --syntax-keyword: #1d4ed8;
+  --syntax-color: #a8205a;
+  --syntax-number: #115aa8;
+  --syntax-type: #076a5d;
+  --syntax-comment: #5b6370;
+
+  --shadow-1: 0 1px 2px rgba(16, 24, 40, 0.1);
+  --shadow-2: 0 4px 12px rgba(16, 24, 40, 0.1);
+  --shadow-3: 0 12px 32px rgba(16, 24, 40, 0.2);
+  --scrim: rgba(16, 24, 40, 0.45);
+
+  --tray: #e3e6eb;
+  --tray-slot: #cfd4dc;
+  --tray-edge: #b8bfca;
+  --bevel-light: rgba(255, 255, 255, 0.4);
+  --bevel-dark: rgba(0, 0, 0, 0.2);
+  --tile-drop: 0 3px 5px rgba(15, 26, 43, 0.3);
+  --tile-lift: 0 10px 16px rgba(15, 26, 43, 0.32);
+  --block-K-edge: #0a0f19;
+  --tag-bg: rgba(7, 12, 22, 0.72);
+
+  --accent-gradient: var(--accent-fill);
+  --accent-gradient-soft: var(--accent-wash);
+  --glass: var(--surface-1);
+  --glass-border: var(--border-1);
+  --glow: 0 0 0 3px var(--accent-wash);
+
+  --state-error-solid: #b3262d;
+  --state-error-on: #ffffff;
+  --state-warning-solid: #9a4b00;
+  --state-warning-on: #ffffff;
+}

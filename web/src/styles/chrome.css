@@ -1,0 +1,431 @@
+/* App chrome: notices, level drawer, Lean slide-over, coach marks, hint and intro cards. */
+
+.icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  padding: 6px 0;
+  font-size: 1.1rem;
+}
+
+/* Notices: one banner for offline, load failures and the like. They float, so they never move the layout. */
+
+.notices {
+  position: fixed;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: var(--z-notice);
+  display: grid;
+  gap: var(--space-2);
+  width: min(460px, calc(100vw - 2 * var(--space-4)));
+  pointer-events: none;
+}
+
+/* On a small screen the bottom belongs to the editor, so notices drop in from the top instead. */
+@media (max-width: 899px) {
+  .notices {
+    top: calc(var(--appbar-h) + var(--space-2));
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    translate: -50% 0;
+  }
+}
+
+.notice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-2);
+  border-left-width: 4px;
+  border-radius: var(--radius-3);
+  background: var(--surface-4);
+  box-shadow: var(--shadow-2);
+  pointer-events: auto;
+  animation: notice-in var(--dur-base) var(--ease-out);
+}
+
+.notice-warning {
+  border-color: var(--state-warning-border);
+  background: linear-gradient(var(--state-warning-bg), var(--state-warning-bg)), var(--surface-4);
+}
+
+.notice-error {
+  border-color: var(--state-error-border);
+  background: linear-gradient(var(--state-error-bg), var(--state-error-bg)), var(--surface-4);
+}
+
+.notice-mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--state-warning-solid);
+  color: var(--state-warning-on);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+.notice-error .notice-mark {
+  background: var(--state-error-solid);
+  color: var(--state-error-on);
+}
+
+.notice-text {
+  flex: 1;
+}
+
+@keyframes notice-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+
+.empty-main {
+  flex: 1;
+  display: flex;
+}
+
+.load-error {
+  margin: auto;
+  max-width: 440px;
+  padding: var(--space-8);
+  text-align: center;
+  background: var(--surface-2);
+  border: 1px solid var(--state-error-border);
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-2);
+}
+
+.load-error h1 {
+  margin-bottom: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+}
+
+.load-error p {
+  margin: 0 0 var(--space-4);
+  color: var(--text-2);
+}
+
+/* Stage cards */
+
+.intro {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-1);
+  border: 1px solid var(--border-1);
+  border-left: 4px solid var(--accent-fg);
+  border-radius: var(--radius-3);
+}
+
+.hint-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-fg);
+  border-radius: var(--radius-3);
+}
+
+.hint-box button {
+  flex: none;
+  padding: var(--space-1);
+  font-size: 1rem;
+}
+
+/* Level drawer */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-scrim);
+  background: var(--scrim);
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: var(--z-drawer);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: min(380px, 92vw);
+  padding: var(--space-4);
+  overflow-y: auto;
+  background: var(--surface-2);
+  border-right: 1px solid var(--border-1);
+  box-shadow: var(--shadow-3);
+  transform: translateX(-102%);
+  visibility: hidden;
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    visibility 0s linear var(--dur-base);
+}
+
+.drawer.open {
+  transform: none;
+  visibility: visible;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.drawer header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer h2 {
+  font-size: var(--fs-xl);
+}
+
+.drawer-summary {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+.drawer-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--star);
+}
+
+.drawer ol {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.level-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+}
+
+.level-item.current {
+  border-color: var(--accent-fg);
+  background: var(--accent-wash);
+}
+
+.level-item.locked {
+  background: transparent;
+  border-style: dashed;
+  color: var(--text-3);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.level-order {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border-2);
+  border-radius: 50%;
+  background: var(--surface-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.level-item.solved .level-order {
+  border-color: var(--state-success-border);
+  background: var(--state-success-bg);
+  color: var(--state-success-fg);
+}
+
+.level-text {
+  display: grid;
+  min-width: 0;
+}
+
+.level-text small {
+  color: var(--text-2);
+}
+
+.level-item.locked .level-text small {
+  color: var(--text-3);
+}
+
+.level-state {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  color: var(--text-3);
+}
+
+.level-item.solved .level-state {
+  color: var(--state-success-fg);
+}
+
+.unlock-toggle {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-1);
+  color: var(--text-3);
+  font-size: var(--fs-sm);
+}
+
+/* Lean slide-over (position and size are in layout.css) */
+
+.lean-panel h2 {
+  font-size: var(--fs-xl);
+}
+
+.lean-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lean-note {
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+}
+
+.lean-note code {
+  padding: 0 var(--space-1);
+  border-radius: 4px;
+  background: var(--surface-3);
+  color: var(--text-1);
+  font-family: var(--font-mono);
+}
+
+.lean-source {
+  min-height: 0;
+  margin: 0;
+  padding: var(--space-3) 0;
+  overflow: auto;
+  background: var(--editor-bg);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-2);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  counter-reset: lean-line;
+}
+
+.lean-line {
+  position: relative;
+  display: block;
+  min-height: 1.6em;
+  padding: 0 var(--space-4) 0 3.4em;
+  counter-increment: lean-line;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.lean-line::before {
+  content: counter(lean-line);
+  position: absolute;
+  left: 0;
+  width: 2.5em;
+  color: var(--text-3);
+  text-align: right;
+}
+
+.tok-comment {
+  color: var(--syntax-comment);
+  font-style: italic;
+}
+
+.tok-keyword,
+.tok-tactic {
+  color: var(--syntax-keyword);
+  font-weight: 600;
+}
+
+.tok-string,
+.tok-type {
+  color: var(--syntax-type);
+}
+
+.tok-number,
+.tok-constant {
+  color: var(--syntax-number);
+}
+
+.lean-empty {
+  color: var(--text-2);
+}
+
+/* Coach marks: the onboarding card points at the real board, editor and banner. */
+
+.coach {
+  position: fixed;
+  z-index: var(--z-coach);
+  padding: var(--space-4);
+  background: var(--surface-4);
+  border: 1px solid var(--accent-fg);
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-3);
+}
+
+.coach h2 {
+  margin-bottom: var(--space-1);
+  font-size: var(--fs-lg);
+}
+
+.coach p {
+  margin: 0 0 var(--space-3);
+  color: var(--text-2);
+}
+
+.coach-ring {
+  position: fixed;
+  z-index: calc(var(--z-coach) - 1);
+  border: 2px solid var(--accent-fg);
+  border-radius: var(--radius-4);
+  box-shadow: 0 0 0 4px var(--accent-wash);
+  pointer-events: none;
+  transition:
+    left var(--dur-base) var(--ease-out),
+    top var(--dur-base) var(--ease-out),
+    width var(--dur-base) var(--ease-out),
+    height var(--dur-base) var(--ease-out);
+}
+
+.onboarding-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.onboarding-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.onboarding-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-2);
+}
+
+.onboarding-dots span.on {
+  background: var(--accent-fg);
+}

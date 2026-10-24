@@ -1,0 +1,11 @@
+{
+  "name": "comments-and-blanks",
+  "levelId": "L01",
+  "helpers": "",
+  "proof": "-- plan\n  swap (0, 0) (0, 1)\n\n-- next\nswap (1, 0) (1, 1)",
+  "lines": [
+    "{\"caption\":\"\",\"data\":\"PP_BOARD {\\\"board\\\":[[\\\"G.\\\",\\\"R.\\\"],[\\\"B.\\\",\\\"Y.\\\"]],\\\"substeps\\\":[]}\",\"endPos\":{\"column\":20,\"line\":13},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\fef0e9e6-e64b-44f3-81af-1f05b9f20a9d\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"information\"}",
+    "{\"caption\":\"\",\"data\":\"PP_BOARD {\\\"board\\\":[[\\\"G.\\\",\\\"R.\\\"],[\\\"Y.\\\",\\\"B.\\\"]],\\\"substeps\\\":[]}\",\"endPos\":{\"column\":20,\"line\":16},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\fef0e9e6-e64b-44f3-81af-1f05b9f20a9d\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":16},\"severity\":\"information\"}",
+    "{\"caption\":\"\",\"data\":\"'puzzle' depends on axioms: [propext]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\fef0e9e6-e64b-44f3-81af-1f05b9f20a9d\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}"
+  ]
+}

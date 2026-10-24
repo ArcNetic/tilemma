@@ -1,0 +1,85 @@
+{
+  "id": "L08",
+  "order": 8,
+  "title": "Name It",
+  "concept": "helper intro",
+  "intro": "A helper is a Lean definition that returns a list of moves. Define it once, then use run to apply it as often as you like.",
+  "hint": "run turn three times rotates both arrows three quarter turns.",
+  "start": [
+    [
+      "R^",
+      "G.",
+      "B.",
+      "Y."
+    ],
+    [
+      "Y.",
+      "G>",
+      "R.",
+      "G."
+    ],
+    [
+      "G.",
+      "B.",
+      "W.",
+      "W."
+    ],
+    [
+      "W.",
+      "R.",
+      "G.",
+      "B."
+    ]
+  ],
+  "target": [
+    [
+      "R<",
+      "G.",
+      "B.",
+      "Y."
+    ],
+    [
+      "Y.",
+      "G^",
+      "R.",
+      "G."
+    ],
+    [
+      "G.",
+      "B.",
+      "B.",
+      "W."
+    ],
+    [
+      "W.",
+      "R.",
+      "G.",
+      "W."
+    ]
+  ],
+  "moves": [
+    "swap",
+    "paint",
+    "rotate"
+  ],
+  "palette": [
+    "R",
+    "G",
+    "B",
+    "Y",
+    "W",
+    "K"
+  ],
+  "helpers": "simple",
+  "par": 4,
+  "starterHelpers": "def turn : List Move := [.rotate (0, 0), .rotate (1, 1)]",
+  "reference": {
+    "helpers": "def turn : List Move := [.rotate (0, 0), .rotate (1, 1)]",
+    "proof": [
+      "run turn",
+      "run turn",
+      "run turn",
+      "swap (2, 2) (3, 3)"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "L03",
+  "order": 3,
+  "title": "Quarter Turn",
+  "concept": "rotate",
+  "intro": "rotate (row, col) turns an arrow 90 degrees clockwise. Blocks without an arrow cannot rotate.",
+  "hint": "Up becomes right, right becomes down.",
+  "start": [
+    [
+      "R^",
+      "G."
+    ],
+    [
+      "B.",
+      "Y>"
+    ]
+  ],
+  "target": [
+    [
+      "R>",
+      "G."
+    ],
+    [
+      "B.",
+      "Yv"
+    ]
+  ],
+  "moves": [
+    "rotate"
+  ],
+  "palette": [],
+  "helpers": "none",
+  "par": 2,
+  "reference": {
+    "helpers": "",
+    "proof": [
+      "rotate (0, 0)",
+      "rotate (1, 1)"
+    ]
+  }
+}

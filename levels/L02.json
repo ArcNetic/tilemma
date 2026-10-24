@@ -1,0 +1,46 @@
+{
+  "id": "L02",
+  "order": 2,
+  "title": "Fresh Paint",
+  "concept": "paint",
+  "intro": "paint (row, col) color recolors one block. Colors: red, green, blue, yellow.",
+  "hint": "Two blocks differ from the target: the top left and the bottom right.",
+  "start": [
+    [
+      "R.",
+      "R."
+    ],
+    [
+      "B.",
+      "B."
+    ]
+  ],
+  "target": [
+    [
+      "G.",
+      "R."
+    ],
+    [
+      "B.",
+      "Y."
+    ]
+  ],
+  "moves": [
+    "paint"
+  ],
+  "palette": [
+    "R",
+    "G",
+    "B",
+    "Y"
+  ],
+  "helpers": "none",
+  "par": 2,
+  "reference": {
+    "helpers": "",
+    "proof": [
+      "paint (0, 0) green",
+      "paint (1, 1) yellow"
+    ]
+  }
+}

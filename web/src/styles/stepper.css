@@ -1,0 +1,199 @@
+/* Timeline stepper: transport buttons, a track with one node per frame, and the step label.
+   Done = filled, current = larger with a halo, ahead = hollow, failed = red with an X,
+   helper sub-steps = smaller nodes in a pill under their line. */
+
+.stepper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.stepper-buttons {
+  flex: none;
+  display: flex;
+  gap: var(--space-1);
+}
+
+.stepper-buttons button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  font-size: 1.05rem;
+}
+
+.stepper-buttons .play:not(:disabled) {
+  background: var(--accent-fill);
+  border-color: var(--accent-fill);
+  color: var(--accent-on);
+}
+
+.timeline {
+  --node: clamp(8px, calc(360px / var(--frames, 10)), 14px);
+  position: relative;
+  flex: 1 1 200px;
+  min-width: 160px;
+  display: flex;
+  align-items: center;
+  height: 46px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+
+.timeline[aria-disabled="true"] {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.node-slot {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* The track: a segment from the previous node's centre to this node's centre. */
+.node-slot::before {
+  content: "";
+  position: absolute;
+  left: -50%;
+  width: 100%;
+  top: calc(50% - 1px);
+  height: 2px;
+  background: var(--border-2);
+}
+
+.timeline > .node-slot:first-child::before {
+  display: none;
+}
+
+.node-slot:has(.node-done)::before,
+.node-slot:has(.node-current)::before {
+  background: var(--accent-fg);
+}
+
+.node-slot:has(.node-failed)::before {
+  background: var(--state-error-solid);
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--node);
+  height: var(--node);
+  border: 2px solid var(--border-2);
+  border-radius: 50%;
+  background: var(--surface-1);
+  transition:
+    scale var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.node-start {
+  border-radius: 4px;
+}
+
+.node-sub {
+  width: calc(var(--node) * 0.68);
+  height: calc(var(--node) * 0.68);
+}
+
+.node-done {
+  background: var(--accent-fg);
+  border-color: var(--accent-fg);
+}
+
+.node-current {
+  background: var(--accent-fg);
+  border-color: var(--accent-fg);
+  scale: 1.3;
+  box-shadow:
+    0 0 0 2px var(--surface-1),
+    0 0 0 4px var(--accent-fg);
+}
+
+.node-failed {
+  width: calc(var(--node) + 4px);
+  height: calc(var(--node) + 4px);
+  background: var(--state-error-solid);
+  border-color: var(--state-error-solid);
+  color: var(--state-error-on);
+}
+
+.node-failed svg {
+  width: 70%;
+  height: 70%;
+  stroke-width: 3.4;
+}
+
+.node-hover:not(.node-current) {
+  border-color: var(--text-1);
+  scale: 1.2;
+}
+
+.node-group {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  margin: 7px 2px;
+  padding: 0 2px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-wash);
+}
+
+.node-line {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  translate: -50% 0;
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.node-slot > .node-line {
+  bottom: 1px;
+}
+
+.timeline-tip {
+  position: absolute;
+  bottom: calc(100% - 2px);
+  translate: -50% 0;
+  padding: 2px var(--space-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-1);
+  background: var(--surface-4);
+  box-shadow: var(--shadow-1);
+  color: var(--text-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.step-label {
+  flex: none;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+.step-count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}

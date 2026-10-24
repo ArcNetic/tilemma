@@ -1,0 +1,10 @@
+{
+  "name": "helper-illegal-substep",
+  "levelId": "L10",
+  "helpers": "def bad (r c : Nat) : List Move := [.rotate (r, c), .rotate (r, 1)]",
+  "proof": "run bad 0 0",
+  "lines": [
+    "{\"caption\":\"\",\"data\":\"PP_ILLEGAL {\\\"reason\\\":\\\"NOT_ROTATABLE\\\",\\\"cells\\\":[[0,1]],\\\"substep\\\":1,\\\"substeps\\\":[[[\\\"R>\\\",\\\"G.\\\",\\\"B.\\\"],[\\\"Y.\\\",\\\"G>\\\",\\\"R.\\\"],[\\\"G.\\\",\\\"B.\\\",\\\"Wv\\\"]]]}\",\"endPos\":{\"column\":13,\"line\":16},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\39d6f41e-20cd-48df-a72f-30eaeb11bd96\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":16},\"severity\":\"error\"}",
+    "{\"caption\":\"\",\"data\":\"'puzzle' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\39d6f41e-20cd-48df-a72f-30eaeb11bd96\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}"
+  ]
+}

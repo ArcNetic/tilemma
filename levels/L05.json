@@ -1,0 +1,65 @@
+{
+  "id": "L05",
+  "order": 5,
+  "title": "Under Lock",
+  "concept": "locks",
+  "intro": "Locked blocks never move, change color, or rotate. Plan around them.",
+  "hint": "The locked green block stays put. Paint the bottom right instead of swapping for it.",
+  "start": [
+    [
+      "R^",
+      "G.#",
+      "B."
+    ],
+    [
+      "Y.",
+      "R>",
+      "G."
+    ],
+    [
+      "B.",
+      "Y.",
+      "W."
+    ]
+  ],
+  "target": [
+    [
+      "B.",
+      "G.#",
+      "R^"
+    ],
+    [
+      "Y.",
+      "Rv",
+      "G."
+    ],
+    [
+      "B.",
+      "Y.",
+      "G."
+    ]
+  ],
+  "moves": [
+    "swap",
+    "paint",
+    "rotate"
+  ],
+  "palette": [
+    "R",
+    "G",
+    "B",
+    "Y",
+    "W",
+    "K"
+  ],
+  "helpers": "none",
+  "par": 3,
+  "reference": {
+    "helpers": "",
+    "proof": [
+      "swap (0, 0) (0, 2)",
+      "rotate (1, 1)",
+      "paint (2, 2) green"
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "id": "L07",
+  "order": 7,
+  "title": "Bigger Board",
+  "concept": "planning",
+  "intro": "Four by four. Count the differences first, then find the cheapest sequence.",
+  "hint": "Two rotations and two swaps cover most of it.",
+  "start": [
+    [
+      "R^",
+      "G.",
+      "B.",
+      "Y."
+    ],
+    [
+      "Y.",
+      "W>",
+      "R.",
+      "G."
+    ],
+    [
+      "G.",
+      "B.",
+      "Yv",
+      "W."
+    ],
+    [
+      "W.",
+      "R.#",
+      "G.",
+      "B<"
+    ]
+  ],
+  "target": [
+    [
+      "R>",
+      "G.",
+      "B.",
+      "W."
+    ],
+    [
+      "Y.",
+      "Wv",
+      "B.",
+      "G."
+    ],
+    [
+      "G.",
+      "R.",
+      "Rv",
+      "W."
+    ],
+    [
+      "Y.",
+      "R.#",
+      "G.",
+      "W<"
+    ]
+  ],
+  "moves": [
+    "swap",
+    "paint",
+    "rotate"
+  ],
+  "palette": [
+    "R",
+    "G",
+    "B",
+    "Y",
+    "W",
+    "K"
+  ],
+  "helpers": "none",
+  "par": 6,
+  "reference": {
+    "helpers": "",
+    "proof": [
+      "rotate (0, 0)",
+      "rotate (1, 1)",
+      "swap (0, 3) (3, 0)",
+      "paint (2, 2) red",
+      "swap (1, 2) (2, 1)",
+      "paint (3, 3) white"
+    ]
+  }
+}

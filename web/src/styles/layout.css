@@ -1,0 +1,571 @@
+/* Layout: app shell, workspace, editor column, stage, board sizing, splitters, Lean slide-over.
+   Desktop (900 px and wider) is a two-pane workspace that fills the viewport and never scrolls the page.
+   Below 900 px everything stacks, board first, and the page scrolls. */
+
+:root {
+  --splitter: 12px;
+  --appbar-h: 56px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  min-height: 560px;
+}
+
+.loading {
+  padding: var(--space-10) 0;
+}
+
+/* App bar */
+
+.app-header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--appbar-h);
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--border-1);
+  background: var(--surface-1);
+}
+
+.levels-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: none;
+}
+
+.brand {
+  margin: 0;
+  flex: none;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.level-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.level-number {
+  flex: none;
+  color: var(--text-2);
+}
+
+.level-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-bar-end {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: none;
+}
+
+.app > .banner {
+  flex: none;
+  margin: var(--space-2) var(--space-4) 0;
+}
+
+/* Workspace */
+
+.workspace {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns:
+    clamp(460px, calc(var(--split-x, 58) * 1%), calc(100% - 320px - var(--splitter)))
+    var(--splitter)
+    minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+/* Editor column */
+
+.editor-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  min-height: 0;
+  padding: var(--space-3) var(--space-4) var(--space-4) 0;
+}
+
+.status-bar {
+  flex: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  align-content: center;
+  gap: 2px var(--space-3);
+  min-height: 76px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--border-1);
+  border-left-width: 4px;
+  border-radius: var(--radius-3);
+  background: var(--surface-2);
+}
+
+.status-heading {
+  flex: 0 0 100%;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-tight);
+}
+
+.status-bar.tone-success {
+  border-color: var(--state-success-border);
+  background: linear-gradient(var(--state-success-bg), var(--state-success-bg)), var(--surface-2);
+}
+
+.status-bar.tone-error {
+  border-color: var(--state-error-border);
+  background: linear-gradient(var(--state-error-bg), var(--state-error-bg)), var(--surface-2);
+}
+
+.status-bar.tone-error .status-heading {
+  color: var(--state-error-fg);
+}
+
+.status-bar.tone-warning {
+  border-color: var(--state-warning-border);
+  background: linear-gradient(var(--state-warning-bg), var(--state-warning-bg)), var(--surface-2);
+}
+
+.pane-stack {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--surface-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-3);
+  overflow: hidden;
+}
+
+.pane-proof {
+  flex: 1 1 0;
+  min-height: 112px;
+}
+
+.pane-helpers {
+  flex: 0 1 calc(var(--split-y, 40) * 1%);
+  min-height: 112px;
+}
+
+.pane-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 36px;
+  padding: var(--space-1) var(--space-2) var(--space-1) var(--space-3);
+  background: var(--surface-3);
+  border-bottom: 1px solid var(--border-1);
+}
+
+.pane-head h2 {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.pane-count {
+  padding: 0 var(--space-2);
+  border: 1px solid var(--state-error-border);
+  border-radius: var(--radius-pill);
+  color: var(--state-error-fg);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.pane-actions {
+  margin-left: auto;
+  display: flex;
+  gap: var(--space-1);
+}
+
+button.quiet {
+  padding: var(--space-1) var(--space-2);
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+button.quiet:hover:not(:disabled) {
+  background: var(--surface-4);
+  border-color: var(--border-1);
+  color: var(--text-1);
+}
+
+.code-editor {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-editor .cm-editor {
+  flex: 1 1 0;
+  height: auto;
+  min-height: 0;
+}
+
+.editor-actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Splitters */
+
+.splitter {
+  position: relative;
+  flex: none;
+  touch-action: none;
+}
+
+.splitter::after {
+  content: "";
+  position: absolute;
+  border-radius: 2px;
+  background: var(--border-2);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.splitter:hover::after,
+.splitter:focus-visible::after {
+  background: var(--accent-fg);
+}
+
+.splitter-vertical {
+  width: var(--splitter);
+  margin: var(--space-3) 0 var(--space-4);
+  cursor: col-resize;
+}
+
+.splitter-vertical::after {
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+}
+
+.splitter-horizontal {
+  height: var(--splitter);
+  cursor: row-resize;
+}
+
+.splitter-horizontal::after {
+  left: 50%;
+  top: 50%;
+  width: 44px;
+  height: 4px;
+  transform: translate(-50%, -50%);
+}
+
+/* Stage: a graph-paper sheet the boards sit on */
+
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  margin: var(--space-3) 0 var(--space-4) var(--space-4);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-4);
+  background-color: var(--surface-1);
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+  overflow: hidden;
+}
+
+.stage-board {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  container: stage / size;
+}
+
+.stage-grid {
+  --inset-w: 344px;
+  --inset-h: 210px;
+  --avail-w: calc(100cqw - var(--inset-w) - 64px);
+  --avail-h: calc(100cqh - 32px);
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: minmax(0, 1fr);
+  column-gap: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+}
+
+.stage-grid.target-large {
+  --inset-h: 300px;
+}
+
+.board-slot {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  min-height: 0;
+}
+
+.inset-slot {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+}
+
+.inset-toggle {
+  display: none;
+}
+
+.stage-controls {
+  flex: none;
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-2);
+  border-top: 1px solid var(--border-1);
+}
+
+.diff-toggle {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+
+.stage-context {
+  flex: none;
+  height: clamp(104px, 20dvh, 192px);
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-2);
+  border-top: 1px solid var(--border-1);
+}
+
+/* Boards. Cell size comes from the room the stage leaves, not from fixed breakpoints. */
+
+.board-panel {
+  --chrome-x: 80px;
+  --chrome-y: 116px;
+  /* Small enough that a 6x6 board still clears the target in the narrowest stage the divider allows. */
+  --cell-min: 22px;
+  --cell-size: clamp(
+    var(--cell-min),
+    min(
+      (var(--avail-w, 320px) - var(--chrome-x) - (var(--cols, 2) - 1) * 4px) / var(--cols, 2),
+      (var(--avail-h, 320px) - var(--chrome-y) - (var(--rows, 2) - 1) * 4px) / var(--rows, 2)
+    ),
+    132px
+  );
+  width: fit-content;
+  max-width: 100%;
+  padding: var(--space-3) 32px 32px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-2);
+}
+
+.board-inset {
+  --cell-size: clamp(32px, calc(264px / var(--cols, 2)), 84px);
+  padding: 10px var(--space-3) var(--space-3);
+  box-shadow: var(--shadow-1);
+}
+
+/* A medium stage: the target stays beside the board but shrinks to a thumbnail
+   (tap "Enlarge target" for a bigger one). */
+@container stage (max-width: 760px) {
+  .stage-grid {
+    --inset-w: 150px;
+    column-gap: var(--space-4);
+    padding: var(--space-4);
+  }
+
+  .stage-grid.target-large {
+    --inset-w: 232px;
+  }
+
+  .board-inset {
+    --cell-size: clamp(20px, calc(100px / var(--cols, 2)), 30px);
+    padding: var(--space-2) 10px 10px;
+  }
+
+  .stage-grid.target-large .board-inset {
+    --cell-size: clamp(30px, calc(176px / var(--cols, 2)), 48px);
+  }
+
+  .board-inset .col-labels,
+  .board-inset .row-labels {
+    display: none;
+  }
+
+  .inset-toggle {
+    display: inline-block;
+  }
+}
+
+/* A phone-width stage: the thumbnail moves above the board. */
+@container stage (max-width: 440px) {
+  .stage-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    row-gap: var(--space-3);
+    --avail-w: calc(100cqw - 40px);
+    --avail-h: calc(100cqh - var(--inset-h) - 56px);
+  }
+
+  .inset-slot {
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .board-slot {
+    grid-row: 2;
+  }
+}
+
+/* Generated Lean: a slide-over from the right */
+
+.lean-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-drawer);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: min(560px, 94vw);
+  padding: var(--space-4) var(--space-5);
+  overflow: auto;
+  background: var(--surface-2);
+  border-left: 1px solid var(--border-1);
+  box-shadow: var(--shadow-3);
+}
+
+.lean-panel .lean-source {
+  flex: 1;
+  max-height: none;
+}
+
+/* Stacked: below 900 px the board comes first and the page scrolls */
+
+@media (max-width: 899px) {
+  .app {
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .workspace {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .splitter {
+    display: none;
+  }
+
+  .stage {
+    order: 1;
+    margin: var(--space-3) var(--space-3) 0;
+  }
+
+  .editor-col {
+    order: 2;
+    padding: var(--space-3) var(--space-3) var(--space-4);
+  }
+
+  .stage-board {
+    container: stage / inline-size;
+    overflow: visible;
+  }
+
+  .stage-grid {
+    height: auto;
+    --avail-h: 56dvh;
+  }
+
+  .board-panel {
+    --cell-min: 40px;
+  }
+
+  .stage-context {
+    height: auto;
+    overflow: visible;
+  }
+
+  .pane-stack {
+    flex: none;
+    gap: var(--space-3);
+  }
+
+  .pane-helpers,
+  .pane-proof {
+    flex: none;
+  }
+
+  /* flex: none, or the editor's flex: 1 would override the height and collapse it to a line or two. */
+  .pane-helpers .code-editor {
+    flex: none;
+    height: 150px;
+  }
+
+  .pane-proof .code-editor {
+    flex: none;
+    height: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    gap: var(--space-2);
+  }
+
+  .brand {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .level-info .chip,
+  .level-info .mini-stars {
+    display: none;
+  }
+}

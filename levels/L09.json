@@ -1,0 +1,85 @@
+{
+  "id": "L09",
+  "order": 9,
+  "title": "Row Flipper",
+  "concept": "helper reuse",
+  "intro": "Helpers take Nat parameters. One definition can serve every row.",
+  "hint": "flipRow r reverses row r. Call it on each row.",
+  "start": [
+    [
+      "R.",
+      "G.",
+      "B.",
+      "Y."
+    ],
+    [
+      "Y.",
+      "B.",
+      "R.",
+      "G."
+    ],
+    [
+      "G.",
+      "W.",
+      "B.",
+      "R."
+    ],
+    [
+      "W.",
+      "R.",
+      "Y.",
+      "B."
+    ]
+  ],
+  "target": [
+    [
+      "Y.",
+      "B.",
+      "G.",
+      "R."
+    ],
+    [
+      "G.",
+      "R.",
+      "B.",
+      "Y."
+    ],
+    [
+      "R.",
+      "B.",
+      "W.",
+      "G."
+    ],
+    [
+      "B.",
+      "Y.",
+      "R.",
+      "W."
+    ]
+  ],
+  "moves": [
+    "swap",
+    "paint",
+    "rotate"
+  ],
+  "palette": [
+    "R",
+    "G",
+    "B",
+    "Y",
+    "W",
+    "K"
+  ],
+  "helpers": "params",
+  "par": 4,
+  "starterHelpers": "def flipRow (r : Nat) : List Move := [.swap (r, 0) (r, 3), .swap (r, 1) (r, 2)]",
+  "reference": {
+    "helpers": "def flipRow (r : Nat) : List Move := [.swap (r, 0) (r, 3), .swap (r, 1) (r, 2)]",
+    "proof": [
+      "run flipRow 0",
+      "run flipRow 1",
+      "run flipRow 2",
+      "run flipRow 3"
+    ]
+  }
+}

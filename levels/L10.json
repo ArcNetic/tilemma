@@ -1,0 +1,66 @@
+{
+  "id": "L10",
+  "order": 10,
+  "title": "Counter Clockwise",
+  "concept": "ccw",
+  "intro": "There is no counter clockwise move, but three clockwise turns make one. List.replicate n x builds a list of n copies of x.",
+  "hint": "def ccw (r c : Nat) : List Move := List.replicate 3 (.rotate (r, c))",
+  "start": [
+    [
+      "R^",
+      "G.",
+      "B."
+    ],
+    [
+      "Y.",
+      "G>",
+      "R."
+    ],
+    [
+      "G.",
+      "B.",
+      "Wv"
+    ]
+  ],
+  "target": [
+    [
+      "R<",
+      "G.",
+      "B."
+    ],
+    [
+      "Y.",
+      "G^",
+      "R."
+    ],
+    [
+      "G.",
+      "B.",
+      "W>"
+    ]
+  ],
+  "moves": [
+    "swap",
+    "paint",
+    "rotate"
+  ],
+  "palette": [
+    "R",
+    "G",
+    "B",
+    "Y",
+    "W",
+    "K"
+  ],
+  "helpers": "params",
+  "par": 3,
+  "starterHelpers": "def ccw (r c : Nat) : List Move := List.replicate 3 (.rotate (r, c))",
+  "reference": {
+    "helpers": "def ccw (r c : Nat) : List Move := List.replicate 3 (.rotate (r, c))",
+    "proof": [
+      "run ccw 0 0",
+      "run ccw 1 1",
+      "run ccw 2 2"
+    ]
+  }
+}

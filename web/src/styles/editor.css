@@ -1,0 +1,62 @@
+/* Editor extras: line states drawn by the marks extension, colour swatches, and the empty-state chip.
+   The CodeMirror theme itself lives in editor/theme.ts. */
+
+.pane {
+  position: relative;
+}
+
+/* Lines after the first failure: dimmed, but still readable. */
+.cm-dim-line {
+  opacity: 0.55;
+}
+
+/* The line whose board the stage is showing. */
+.cm-active-frame-line {
+  background: color-mix(in srgb, var(--accent-fg) 18%, transparent);
+}
+
+/* The line that failed. Its number turns red in the gutter (see theme.ts). */
+.cm-fail-line {
+  background: var(--state-error-bg);
+}
+
+/* The line of the timeline node under the pointer. */
+.cm-hover-line {
+  background: var(--accent-wash);
+  box-shadow: inset 3px 0 0 var(--accent-fg);
+}
+
+.cm-swatch {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.35em;
+  vertical-align: -0.08em;
+  border: 1px solid color-mix(in srgb, var(--block) 55%, black);
+  border-radius: 3px;
+  background: var(--block);
+}
+
+.cm-swatch.color-K {
+  border-color: var(--block-K-edge);
+}
+
+.try-chip {
+  position: absolute;
+  left: var(--space-3);
+  bottom: var(--space-3);
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent-wash);
+  border-color: var(--accent-fg);
+  color: var(--text-1);
+  font-size: var(--fs-sm);
+}
+
+.try-chip code {
+  font-family: var(--font-mono);
+  color: var(--accent-fg);
+}

@@ -1,0 +1,65 @@
+{
+  "id": "L04",
+  "order": 4,
+  "title": "Mixed Bag",
+  "concept": "mix",
+  "intro": "All three moves are available now. Compare the boards and decide which move fixes each difference.",
+  "hint": "One rotation, one paint, one swap.",
+  "start": [
+    [
+      "R^",
+      "G.",
+      "B."
+    ],
+    [
+      "Y.",
+      "W.",
+      "R."
+    ],
+    [
+      "G.",
+      "B.",
+      "Y."
+    ]
+  ],
+  "target": [
+    [
+      "R>",
+      "G.",
+      "G."
+    ],
+    [
+      "Y.",
+      "B.",
+      "R."
+    ],
+    [
+      "B.",
+      "B.",
+      "Y."
+    ]
+  ],
+  "moves": [
+    "swap",
+    "paint",
+    "rotate"
+  ],
+  "palette": [
+    "R",
+    "G",
+    "B",
+    "Y",
+    "W",
+    "K"
+  ],
+  "helpers": "none",
+  "par": 3,
+  "reference": {
+    "helpers": "",
+    "proof": [
+      "rotate (0, 0)",
+      "paint (1, 1) blue",
+      "swap (0, 2) (2, 0)"
+    ]
+  }
+}

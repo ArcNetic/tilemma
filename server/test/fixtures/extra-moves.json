@@ -1,0 +1,12 @@
+{
+  "name": "extra-moves",
+  "levelId": "L01",
+  "helpers": "",
+  "proof": "swap (0, 0) (0, 1)\nswap (1, 0) (1, 1)\nswap (0, 0) (0, 1)",
+  "lines": [
+    "{\"caption\":\"\",\"data\":\"PP_BOARD {\\\"board\\\":[[\\\"G.\\\",\\\"R.\\\"],[\\\"B.\\\",\\\"Y.\\\"]],\\\"substeps\\\":[]}\",\"endPos\":{\"column\":20,\"line\":12},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\3c0d826e-6124-40d7-890c-15e39191642d\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":12},\"severity\":\"information\"}",
+    "{\"caption\":\"\",\"data\":\"PP_BOARD {\\\"board\\\":[[\\\"G.\\\",\\\"R.\\\"],[\\\"Y.\\\",\\\"B.\\\"]],\\\"substeps\\\":[]}\",\"endPos\":{\"column\":20,\"line\":13},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\3c0d826e-6124-40d7-890c-15e39191642d\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"information\"}",
+    "{\"caption\":\"\",\"data\":\"PP_EXTRA_MOVES the board already matches the target\",\"endPos\":{\"column\":20,\"line\":14},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\3c0d826e-6124-40d7-890c-15e39191642d\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"error\"}",
+    "{\"caption\":\"\",\"data\":\"'puzzle' depends on axioms: [propext]\",\"endPos\":{\"column\":6,\"line\":16},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\3c0d826e-6124-40d7-890c-15e39191642d\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":16},\"severity\":\"information\"}"
+  ]
+}

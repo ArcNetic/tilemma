@@ -1,0 +1,375 @@
+/* Motion. Each animation here either explains a change or rewards the player, and none loops
+   except the "checking" spinners. Durations and easings are tokens (tokens.css).
+   Reduced motion switches all of it off at the end of this file. */
+
+/* Tiles: shadows, lift and scale ease, so a cleared error fades out instead of snapping. */
+.cell {
+  transition:
+    box-shadow var(--dur-base) var(--ease-out),
+    translate var(--dur-fast) var(--ease-out),
+    scale var(--dur-fast) var(--ease-out);
+}
+
+/* Swap: the tile that is travelling is lifted, so tiles visibly pass over each other. */
+.cell-moving {
+  z-index: 4;
+  scale: 1.06;
+  box-shadow: var(--cell-shadow), var(--tile-lift);
+}
+
+/* Paint: the old colour and its pattern shrink away towards the centre and reveal the new one. */
+.cell-ink {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--block);
+  pointer-events: none;
+  animation: ink-out 280ms var(--ease-out) forwards;
+}
+
+.cell-ink::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+@keyframes ink-out {
+  from {
+    clip-path: circle(75% at 50% 50%);
+  }
+  to {
+    clip-path: circle(0% at 50% 50%);
+  }
+}
+
+/* The badge: neutral while previewing, a spinner while Lean checks, stamped when Lean confirms. */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.badge svg {
+  width: 0.95em;
+  height: 0.95em;
+}
+
+.badge-verified {
+  background: linear-gradient(var(--state-success-bg), var(--state-success-bg)), var(--surface-3);
+  border-color: var(--state-success-border);
+  color: var(--state-success-fg);
+  font-weight: 600;
+}
+
+.badge-working {
+  color: var(--text-2);
+}
+
+.badge-spinner,
+.run-spinner {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--accent-fg);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.run-spinner {
+  width: 12px;
+  height: 12px;
+  border-color: var(--accent-on);
+  border-top-color: transparent;
+}
+
+.badge-stamp {
+  position: relative;
+  overflow: hidden;
+  animation: stamp 600ms var(--ease-spring) both;
+}
+
+.badge-stamp::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, color-mix(in srgb, var(--glyph-light) 55%, transparent) 50%, transparent 70%);
+  translate: -120% 0;
+  animation: shine 600ms var(--ease-out) 120ms forwards;
+}
+
+.badge-stamp svg path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: draw 360ms var(--ease-out) 150ms forwards;
+}
+
+@keyframes stamp {
+  0% {
+    scale: 0.86;
+    opacity: 0.6;
+  }
+  55% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes shine {
+  to {
+    translate: 120% 0;
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* When Lean confirms a clean board, its edge glows green for a moment. */
+.verify-flash .board-grid {
+  animation: verify-glow 800ms var(--ease-out);
+}
+
+@keyframes verify-glow {
+  from {
+    box-shadow:
+      inset 0 3px 8px var(--bevel-dark),
+      0 0 0 3px var(--state-success-border),
+      0 0 26px 6px color-mix(in srgb, var(--state-success-border) 45%, transparent);
+  }
+  to {
+    box-shadow:
+      inset 0 3px 8px var(--bevel-dark),
+      0 0 0 0 transparent,
+      0 0 0 0 transparent;
+  }
+}
+
+/* Solved: the board keeps a green edge, and the tiles pulse once in a wave from the top left. */
+.board-solved .board-grid {
+  border-color: var(--state-success-border);
+  box-shadow:
+    inset 0 3px 8px var(--bevel-dark),
+    0 0 0 2px var(--state-success-border),
+    0 0 24px 2px color-mix(in srgb, var(--state-success-border) 35%, transparent);
+}
+
+.board-solved .cell {
+  animation: cell-wave 500ms var(--ease-out) both;
+  animation-delay: calc(var(--wave, 0) * 60ms);
+}
+
+@keyframes cell-wave {
+  0%,
+  100% {
+    scale: 1;
+  }
+  40% {
+    scale: 1.09;
+    filter: brightness(1.15);
+  }
+}
+
+/* The status banner slides in when it has something to say. */
+.status-bar {
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+
+.status-bar.tone-error,
+.status-bar.tone-success,
+.status-bar.tone-warning {
+  animation: banner-in var(--dur-base) var(--ease-out);
+}
+
+@keyframes banner-in {
+  from {
+    opacity: 0;
+    translate: 0 -6px;
+  }
+}
+
+/* Success dialog */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: grid;
+  place-items: center;
+  background: var(--scrim);
+  animation: fade-in var(--dur-base) var(--ease-out);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.success-card {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  max-width: min(460px, 92vw);
+  padding: var(--space-6) var(--space-8);
+  text-align: center;
+  background: var(--surface-4);
+  border: 2px solid var(--state-success-border);
+  border-radius: var(--radius-4);
+  box-shadow:
+    var(--shadow-3),
+    0 0 40px color-mix(in srgb, var(--state-success-border) 25%, transparent);
+  animation: pop var(--dur-slow) var(--ease-spring);
+}
+
+.success-card h2 {
+  font-size: var(--fs-2xl);
+  line-height: var(--lh-tight);
+}
+
+.success-title,
+.success-moves {
+  margin: 0;
+}
+
+.success-title {
+  color: var(--text-2);
+}
+
+.stars {
+  display: flex;
+  gap: 6px;
+  font-size: 2.2rem;
+}
+
+.stars .star {
+  animation: star-pop 420ms var(--ease-spring) both;
+  animation-delay: calc(250ms + var(--i, 0) * 140ms);
+}
+
+@keyframes star-pop {
+  from {
+    scale: 0;
+    rotate: -40deg;
+    opacity: 0;
+  }
+  60% {
+    scale: 1.25;
+  }
+  to {
+    scale: 1;
+    rotate: 0deg;
+    opacity: 1;
+  }
+}
+
+.verified-badge {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1) var(--space-2);
+  margin: var(--space-1) 0 var(--space-3);
+  padding: 6px var(--space-4);
+  background: linear-gradient(var(--state-success-bg), var(--state-success-bg)), var(--surface-4);
+  border: 1px solid var(--state-success-border);
+  border-radius: var(--radius-3);
+  color: var(--state-success-fg);
+  font-weight: 600;
+}
+
+.verified-badge small {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: 400;
+}
+
+.success-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+@keyframes pop {
+  from {
+    scale: 0.85;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+/* Confetti: once, about three seconds, in the block colours, with different shapes and sizes. */
+
+.confetti {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.piece {
+  position: absolute;
+  top: -24px;
+  background: var(--block);
+  outline: 1px solid color-mix(in srgb, var(--block) 50%, var(--glyph-light));
+  outline-offset: -1px;
+  animation:
+    confetti-fall var(--dur) cubic-bezier(0.3, 0.05, 0.55, 1) var(--delay) both,
+    confetti-spin var(--dur) linear var(--delay) both;
+}
+
+.piece-dot {
+  border-radius: 50%;
+}
+
+.piece-square {
+  border-radius: 2px;
+}
+
+.piece-strip {
+  border-radius: 1px;
+}
+
+@keyframes confetti-fall {
+  to {
+    translate: var(--dx) 108vh;
+  }
+}
+
+@keyframes confetti-spin {
+  to {
+    rotate: var(--rot);
+  }
+}
+
+/* Reduced motion: nothing moves. The board keeps its static green edge and the dialog appears at once. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .confetti,
+  .cell-ink {
+    display: none;
+  }
+
+  .board-solved .cell {
+    animation: none;
+  }
+}

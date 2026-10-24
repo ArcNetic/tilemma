@@ -1,0 +1,108 @@
+{
+  "id": "L11",
+  "order": 11,
+  "title": "Compose",
+  "concept": "composition",
+  "intro": "Helpers can call other helpers. List.map applies a function to every element and List.flatten joins a list of lists.",
+  "hint": "mirror flips every row. Run it before turning the corner arrows.",
+  "start": [
+    [
+      "R^",
+      "G.",
+      "B.",
+      "Y.",
+      "W."
+    ],
+    [
+      "Y.",
+      "B.",
+      "R.",
+      "G.",
+      "K."
+    ],
+    [
+      "G.",
+      "W.",
+      "R.",
+      "B.",
+      "Y."
+    ],
+    [
+      "W.",
+      "R.",
+      "Y.",
+      "B.",
+      "G."
+    ],
+    [
+      "K.",
+      "G.",
+      "B.",
+      "R.",
+      "Yv"
+    ]
+  ],
+  "target": [
+    [
+      "W.",
+      "Y.",
+      "K.",
+      "G.",
+      "Rv"
+    ],
+    [
+      "K.",
+      "G.",
+      "R.",
+      "B.",
+      "Y."
+    ],
+    [
+      "Y.",
+      "B.",
+      "W.",
+      "W.",
+      "G."
+    ],
+    [
+      "G.",
+      "B.",
+      "Y.",
+      "R.",
+      "W."
+    ],
+    [
+      "Y^",
+      "R.",
+      "B.",
+      "G.",
+      "K."
+    ]
+  ],
+  "moves": [
+    "swap",
+    "paint",
+    "rotate"
+  ],
+  "palette": [
+    "R",
+    "G",
+    "B",
+    "Y",
+    "W",
+    "K"
+  ],
+  "helpers": "params",
+  "par": 5,
+  "starterHelpers": "def flipRow (r : Nat) : List Move := [.swap (r, 0) (r, 4), .swap (r, 1) (r, 3)]\ndef mirror : List Move := List.flatten (List.map flipRow (List.range 5))\ndef half (r c : Nat) : List Move := List.replicate 2 (.rotate (r, c))",
+  "reference": {
+    "helpers": "def flipRow (r : Nat) : List Move := [.swap (r, 0) (r, 4), .swap (r, 1) (r, 3)]\ndef mirror : List Move := List.flatten (List.map flipRow (List.range 5))\ndef half (r c : Nat) : List Move := List.replicate 2 (.rotate (r, c))",
+    "proof": [
+      "run mirror",
+      "run half 0 4",
+      "run half 4 0",
+      "paint (2, 2) white",
+      "paint (0, 2) black"
+    ]
+  }
+}

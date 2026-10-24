@@ -1,0 +1,12 @@
+**/node_modules
+**/dist
+.git
+.repl
+lean/.lake
+lean/Tests
+test-results
+playwright-report
+e2e
+scripts
+*.log
+.tmp-server.log

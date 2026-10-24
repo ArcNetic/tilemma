@@ -1,0 +1,11 @@
+{
+  "name": "incomplete",
+  "levelId": "L01",
+  "helpers": "",
+  "proof": "swap (0, 0) (0, 1)",
+  "lines": [
+    "{\"caption\":\"\",\"data\":\"PP_BOARD {\\\"board\\\":[[\\\"G.\\\",\\\"R.\\\"],[\\\"B.\\\",\\\"Y.\\\"]],\\\"substeps\\\":[]}\",\"endPos\":{\"column\":20,\"line\":12},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\cd290712-313e-4612-b507-10d3fe6ce031\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":12},\"severity\":\"information\"}",
+    "{\"caption\":\"\",\"data\":\"unsolved goals\\n⊢ Reach\\n    [[{ color := green, dir := none, locked := false }, { color := red, dir := none, locked := false }],\\n      [{ color := yellow, dir := none, locked := false }, { color := blue, dir := none, locked := false }]]\\n    [[{ color := green, dir := none, locked := false }, { color := red, dir := none, locked := false }],\\n      [{ color := blue, dir := none, locked := false }, { color := yellow, dir := none, locked := false }]]\",\"endPos\":{\"column\":20,\"line\":12},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\cd290712-313e-4612-b507-10d3fe6ce031\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"Tactic.unsolvedGoals\",\"pos\":{\"column\":57,\"line\":11},\"severity\":\"error\"}",
+    "{\"caption\":\"\",\"data\":\"'puzzle' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":14},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\cd290712-313e-4612-b507-10d3fe6ce031\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":14},\"severity\":\"information\"}"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "solved",
+  "levelId": "L01",
+  "helpers": "",
+  "proof": "swap (0, 0) (0, 1)\nswap (1, 0) (1, 1)",
+  "lines": [
+    "{\"caption\":\"\",\"data\":\"PP_BOARD {\\\"board\\\":[[\\\"G.\\\",\\\"R.\\\"],[\\\"B.\\\",\\\"Y.\\\"]],\\\"substeps\\\":[]}\",\"endPos\":{\"column\":20,\"line\":12},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\eb1fb359-5bda-44d4-9371-081b56cc3e22\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":12},\"severity\":\"information\"}",
+    "{\"caption\":\"\",\"data\":\"PP_BOARD {\\\"board\\\":[[\\\"G.\\\",\\\"R.\\\"],[\\\"Y.\\\",\\\"B.\\\"]],\\\"substeps\\\":[]}\",\"endPos\":{\"column\":20,\"line\":13},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\eb1fb359-5bda-44d4-9371-081b56cc3e22\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":13},\"severity\":\"information\"}",
+    "{\"caption\":\"\",\"data\":\"'puzzle' depends on axioms: [propext]\",\"endPos\":{\"column\":6,\"line\":15},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\eb1fb359-5bda-44d4-9371-081b56cc3e22\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":15},\"severity\":\"information\"}"
+  ]
+}

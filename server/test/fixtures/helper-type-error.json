@@ -1,0 +1,11 @@
+{
+  "name": "helper-type-error",
+  "levelId": "L08",
+  "helpers": "def broken : List Move := [.rotate 5]",
+  "proof": "run broken",
+  "lines": [
+    "{\"caption\":\"\",\"data\":\"failed to synthesize instance of type class\\n  OfNat Pos 5\\nnumerals are polymorphic in Lean, but the numeral `5` cannot be used in a context where the expected type is\\n  Pos\\ndue to the absence of the instance above\\n\\nHint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.\",\"endPos\":{\"column\":36,\"line\":7},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\5eafffb7-288f-44e8-b0b0-ed227ef95ba1\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"lean.synthInstanceFailed._namedError\",\"pos\":{\"column\":35,\"line\":7},\"severity\":\"error\"}",
+    "{\"caption\":\"\",\"data\":\"declaration uses `sorry`\",\"endPos\":{\"column\":14,\"line\":9},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\5eafffb7-288f-44e8-b0b0-ed227ef95ba1\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"hasSorry\",\"pos\":{\"column\":8,\"line\":9},\"severity\":\"warning\"}",
+    "{\"caption\":\"\",\"data\":\"'puzzle' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\5eafffb7-288f-44e8-b0b0-ed227ef95ba1\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}"
+  ]
+}

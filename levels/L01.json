@@ -1,0 +1,41 @@
+{
+  "id": "L01",
+  "order": 1,
+  "title": "First Swap",
+  "concept": "swap",
+  "intro": "Each line is one move. swap (row, col) (row, col) trades two blocks. Rows and columns count from 0 at the top left.",
+  "hint": "Swap the two blocks in the top row, then the two in the bottom row.",
+  "start": [
+    [
+      "R.",
+      "G."
+    ],
+    [
+      "B.",
+      "Y."
+    ]
+  ],
+  "target": [
+    [
+      "G.",
+      "R."
+    ],
+    [
+      "Y.",
+      "B."
+    ]
+  ],
+  "moves": [
+    "swap"
+  ],
+  "palette": [],
+  "helpers": "none",
+  "par": 2,
+  "reference": {
+    "helpers": "",
+    "proof": [
+      "swap (0, 0) (0, 1)",
+      "swap (1, 0) (1, 1)"
+    ]
+  }
+}

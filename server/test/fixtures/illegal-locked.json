@@ -1,0 +1,11 @@
+{
+  "name": "illegal-locked",
+  "levelId": "L05",
+  "helpers": "",
+  "proof": "swap (0, 0) (0, 2)\nswap (0, 0) (0, 1)\nrotate (1, 1)",
+  "lines": [
+    "{\"caption\":\"\",\"data\":\"PP_BOARD {\\\"board\\\":[[\\\"B.\\\",\\\"G.#\\\",\\\"R^\\\"],[\\\"Y.\\\",\\\"R>\\\",\\\"G.\\\"],[\\\"B.\\\",\\\"Y.\\\",\\\"W.\\\"]],\\\"substeps\\\":[]}\",\"endPos\":{\"column\":20,\"line\":14},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\835f435d-e5a5-4886-8f2c-33dfbe3a42d8\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":14},\"severity\":\"information\"}",
+    "{\"caption\":\"\",\"data\":\"PP_ILLEGAL {\\\"reason\\\":\\\"LOCKED\\\",\\\"cells\\\":[[0,1]],\\\"substep\\\":null,\\\"substeps\\\":[]}\",\"endPos\":{\"column\":20,\"line\":15},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\835f435d-e5a5-4886-8f2c-33dfbe3a42d8\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":15},\"severity\":\"error\"}",
+    "{\"caption\":\"\",\"data\":\"'puzzle' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":18},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\835f435d-e5a5-4886-8f2c-33dfbe3a42d8\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":18},\"severity\":\"information\"}"
+  ]
+}

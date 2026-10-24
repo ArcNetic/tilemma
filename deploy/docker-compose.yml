@@ -1,0 +1,49 @@
+# Production stack: Caddy (HTTPS, compression) in front of the app.
+# The app sits on an internal network with no route to the internet; only Caddy can reach it.
+# Usage: SITE_ADDRESS=example.com docker compose -f deploy/docker-compose.yml up -d
+services:
+  app:
+    image: tilemma
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 2800m
+    pids_limit: 512
+    environment:
+      DEBUG_LEAN: "0"
+      TRUST_PROXY: "1"
+      CHECKS_PER_MINUTE: "120"
+      WARM_WORKERS: "2"
+    networks:
+      - internal
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?set SITE_ADDRESS to the public host name}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - internal
+      - public
+
+networks:
+  internal:
+    internal: true
+  public:
+
+volumes:
+  caddy_data:
+  caddy_config:

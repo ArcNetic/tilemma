@@ -1,0 +1,11 @@
+node_modules/
+dist/
+lean/.lake/
+lean/Tests/Tmp*/
+*.log
+test-results/
+playwright-report/
+.env
+.repl/
+.tmp-*
+

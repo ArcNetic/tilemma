@@ -1,0 +1,109 @@
+{
+  "id": "L12",
+  "order": 12,
+  "title": "Boss: Full Stack",
+  "concept": "boss",
+  "intro": "Everything at once: locks, helpers built from helpers, and a tight line budget.",
+  "hint": "Spin the diagonal, mirror the board, then fix the leftovers. Mind the lock on the top row.",
+  "start": [
+    [
+      "R^",
+      "G.",
+      "B.#",
+      "Y.",
+      "W>"
+    ],
+    [
+      "Y.",
+      "B>",
+      "R.",
+      "Gv",
+      "K."
+    ],
+    [
+      "G.",
+      "W.",
+      "R^",
+      "B.",
+      "Y."
+    ],
+    [
+      "W.",
+      "R.",
+      "Y.",
+      "B<",
+      "G."
+    ],
+    [
+      "K.",
+      "G.",
+      "B.",
+      "R.",
+      "Y>"
+    ]
+  ],
+  "target": [
+    [
+      "W>",
+      "Y.",
+      "B.#",
+      "G.",
+      "R^"
+    ],
+    [
+      "K.",
+      "R.",
+      "R.",
+      "Bv",
+      "Y."
+    ],
+    [
+      "Y.",
+      "B.",
+      "B>",
+      "W.",
+      "G."
+    ],
+    [
+      "G.",
+      "B^",
+      "Y.",
+      "Gv",
+      "W."
+    ],
+    [
+      "Rv",
+      "R.",
+      "B.",
+      "G.",
+      "K."
+    ]
+  ],
+  "moves": [
+    "swap",
+    "paint",
+    "rotate"
+  ],
+  "palette": [
+    "R",
+    "G",
+    "B",
+    "Y",
+    "W",
+    "K"
+  ],
+  "helpers": "params",
+  "par": 6,
+  "starterHelpers": "def flipRow (r : Nat) : List Move := [.swap (r, 0) (r, 4), .swap (r, 1) (r, 3)]\ndef mirror : List Move := List.flatten (List.map flipRow (List.range 5))\ndef diag : List Move := List.map (fun i => .rotate (i, i)) (List.range 5)\ndef ccw (r c : Nat) : List Move := List.replicate 3 (.rotate (r, c))",
+  "reference": {
+    "helpers": "def flipRow (r : Nat) : List Move := [.swap (r, 0) (r, 4), .swap (r, 1) (r, 3)]\ndef mirror : List Move := List.flatten (List.map flipRow (List.range 5))\ndef diag : List Move := List.map (fun i => .rotate (i, i)) (List.range 5)\ndef ccw (r c : Nat) : List Move := List.replicate 3 (.rotate (r, c))",
+    "proof": [
+      "run diag",
+      "run mirror",
+      "run ccw 0 4",
+      "swap (1, 1) (3, 3)",
+      "paint (2, 2) blue",
+      "paint (4, 0) red"
+    ]
+  }
+}

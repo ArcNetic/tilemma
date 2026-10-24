@@ -1,0 +1,10 @@
+{
+  "name": "helper-too-long",
+  "levelId": "L08",
+  "helpers": "def big : List Move := List.flatten (List.map (fun i => List.replicate 99 (.rotate (i, i))) (List.range 99))",
+  "proof": "run big",
+  "lines": [
+    "{\"caption\":\"\",\"data\":\"PP_TOO_LONG list exceeds the allowed length\",\"endPos\":{\"column\":9,\"line\":18},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\85e63b46-008e-4683-9c26-6dc2ed4b5268\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":2,\"line\":18},\"severity\":\"error\"}",
+    "{\"caption\":\"\",\"data\":\"'puzzle' depends on axioms: [propext, sorryAx]\",\"endPos\":{\"column\":6,\"line\":20},\"fileName\":\"C:\\\\Users\\\\PRESHIT\\\\AppData\\\\Local\\\\Temp\\\\pp-checks\\\\85e63b46-008e-4683-9c26-6dc2ed4b5268\\\\Check.lean\",\"isSilent\":false,\"keepFullRange\":false,\"kind\":\"[anonymous]\",\"pos\":{\"column\":0,\"line\":20},\"severity\":\"information\"}"
+  ]
+}
