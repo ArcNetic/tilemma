@@ -2,18 +2,19 @@
    Sizes scale from --cell-size (set in layout.css), so a 26 px thumbnail and a 104 px tile share one design. */
 
 .board-panel {
-  --tray-pad: 6px;
+  --tray-pad: 8px;
+  --cell-gap: 6px;
   --cell-radius: calc(var(--cell-size) * 0.17);
 }
 
 .board-frame {
   display: grid;
-  gap: 4px;
+  gap: var(--cell-gap);
 }
 
 .board-row {
   display: flex;
-  gap: 4px;
+  gap: var(--cell-gap);
 }
 
 /* Labels */
@@ -21,7 +22,7 @@
 .col-labels,
 .row-labels {
   display: grid;
-  gap: 4px;
+  gap: var(--cell-gap);
   color: var(--text-3);
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
@@ -33,7 +34,7 @@
 .col-labels {
   margin-left: 18px;
   padding: 0 var(--tray-pad);
-  width: calc(var(--cell-size) * var(--cols, 2) + 4px * (var(--cols, 2) - 1) + 2 * var(--tray-pad) + 2px);
+  width: calc(var(--cell-size) * var(--cols, 2) + var(--cell-gap) * (var(--cols, 2) - 1) + 2 * var(--tray-pad) + 2px);
   max-width: 100%;
 }
 
@@ -54,9 +55,9 @@
 .board-grid {
   position: relative;
   display: grid;
-  gap: 4px;
+  gap: var(--cell-gap);
   padding: var(--tray-pad);
-  width: calc(var(--cell-size) * var(--cols, 2) + 4px * (var(--cols, 2) - 1) + 2 * var(--tray-pad) + 2px);
+  width: calc(var(--cell-size) * var(--cols, 2) + var(--cell-gap) * (var(--cols, 2) - 1) + 2 * var(--tray-pad) + 2px);
   max-width: 100%;
   background: var(--tray);
   border: 1px solid var(--tray-edge);
@@ -323,7 +324,7 @@
 
 .ghost-right,
 .ghost-left {
-  top: calc(var(--tray-pad) + var(--ghost-row, 0) * (var(--cell-size) + 4px));
+  top: calc(var(--tray-pad) + var(--ghost-row, 0) * (var(--cell-size) + var(--cell-gap)));
   width: 24px;
   height: var(--cell-size);
   writing-mode: vertical-rl;
@@ -339,7 +340,7 @@
 
 .ghost-bottom,
 .ghost-top {
-  left: calc(var(--tray-pad) + var(--ghost-col, 0) * (var(--cell-size) + 4px));
+  left: calc(var(--tray-pad) + var(--ghost-col, 0) * (var(--cell-size) + var(--cell-gap)));
   width: var(--cell-size);
   height: 24px;
 }

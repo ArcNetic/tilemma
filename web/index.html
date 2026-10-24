@@ -1,21 +1,21 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="color-scheme" content="light dark" />
     <script>
       try {
         var saved = localStorage.getItem("tilemma-theme");
         document.documentElement.dataset.theme =
-          saved === "light" || saved === "dark" ? saved : window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+          saved === "light" || saved === "dark" ? saved : "light";
       } catch (e) {
-        document.documentElement.dataset.theme = "dark";
+        document.documentElement.dataset.theme = "light";
       }
     </script>
     <title>Tilemma | Slide tiles. Prove it.</title>
     <meta name="description" content="Tilemma turns Lean proofs into a block-sliding game. Write a proof, watch the board change step by step, and have Lean verify it." />
-    <meta name="theme-color" content="#0f1115" />
+    <meta name="theme-color" content="#f4f5f7" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Tilemma" />
     <meta property="og:description" content="Solve block puzzles by writing proofs that Lean verifies." />

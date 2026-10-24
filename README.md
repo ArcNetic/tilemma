@@ -4,9 +4,14 @@ Slide tiles. Prove it.
 
 Tilemma is a puzzle game where you solve each level by writing a small [Lean 4](https://lean-lang.org/) proof. A grid of coloured blocks sits next to a target picture. You change the grid one line at a time, and Lean checks that your moves really turn the start into the target.
 
-Live demo: https://tilemma.indonesiacentral.cloudapp.azure.com
+> **The idea in one line:** a proof is a fold. `foldl step board moves == target`, where `step` is a pure function and the Lean kernel re-checks every step by `rfl`. Winning a level *is* constructing the proof term.
 
-Built for the Syntax Error 2026 hackathon (Functional Programming track, problem 2).
+```
+board0 --step m1--> board1 --step m2--> board2 --> ... --> target
+   '------ Reach.step m1 (Reach.step m2 (... Reach.refl)) ------'   one term, checked by the kernel
+```
+
+Live demo: https://tilemma.indonesiacentral.cloudapp.azure.com
 
 ## How to play
 

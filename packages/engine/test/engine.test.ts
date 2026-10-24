@@ -179,6 +179,65 @@ describe("properties", () => {
   });
 });
 
+describe("purity", () => {
+  const deepFreeze = <T,>(value: T): T => {
+    if (value !== null && typeof value === "object" && !Object.isFrozen(value)) {
+      Object.freeze(value);
+      Object.values(value).forEach(deepFreeze);
+    }
+    return value;
+  };
+
+  it("step never mutates its input, even when the board is deeply frozen", () => {
+    fc.assert(
+      fc.property(boardArb, moveArb, (board, move) => {
+        const frozen = deepFreeze(structuredClone(board) as Board);
+        expect(() => step(move, frozen)).not.toThrow();
+        expect(boardsEqual(frozen, board)).toBe(true);
+      }),
+    );
+  });
+
+  it("step is referentially transparent: the same inputs give equal outputs", () => {
+    fc.assert(
+      fc.property(boardArb, moveArb, (board, move) => {
+        expect(boardsEqual(step(move, board), step(move, board))).toBe(true);
+      }),
+    );
+  });
+
+  it("a proof is a fold: applyAll equals reducing step over the moves whenever every move is legal", () => {
+    fc.assert(
+      fc.property(boardArb, fc.array(moveArb, { maxLength: 6 }), (board, moves) => {
+        const folded = moves.reduce<Board>((acc, move) => step(move, acc), board);
+        const proved = applyAll(moves, board);
+        if (proved !== undefined) expect(boardsEqual(proved, folded)).toBe(true);
+      }),
+    );
+  });
+
+  it("trace agrees with applyAll on the final board", () => {
+    fc.assert(
+      fc.property(boardArb, fc.array(moveArb, { maxLength: 6 }), (board, moves) => {
+        const t = trace(moves, board);
+        const final = applyAll(moves, board);
+        expect(t.ok).toBe(final !== undefined);
+        if (t.ok && final) expect(boardsEqual(t.states[t.states.length - 1]!, final)).toBe(true);
+        expect(t.states.length).toBe(t.ok ? moves.length + 1 : t.failedAt + 1);
+      }),
+    );
+  });
+
+  it("an illegal move can never be part of an accepted proof", () => {
+    fc.assert(
+      fc.property(boardArb, moveArb, (board, move) => {
+        fc.pre(!legal(move, board));
+        expect(applyAll([move], board)).toBeUndefined();
+      }),
+    );
+  });
+});
+
 describe("parseProofLine", () => {
   it("parses each move", () => {
     expect(parseProofLine("swap (0, 0) (0, 1)")).toEqual({ kind: "move", move: { kind: "swap", a: [0, 0], b: [0, 1] } });

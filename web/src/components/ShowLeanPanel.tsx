@@ -9,6 +9,14 @@ export type ShowLeanPanelProps = {
   onClose: () => void;
 };
 
+const PROVED: readonly (readonly [string, string])[] = [
+  ["perform_rotate_four", "four rotations of a block are the identity"],
+  ["perform_paint_idempotent", "painting a block twice equals painting it once"],
+  ["applyAll_append", "running xs ++ ys equals running xs, then ys"],
+  ["explainIllegal_none_iff", "a move is legal exactly when it has no rule violation"],
+  ["Dir.cw_four", "turning a direction clockwise four times returns it"],
+];
+
 export const ShowLeanPanel = ({ source, open, onClose }: ShowLeanPanelProps) => {
   const panel = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
@@ -50,6 +58,21 @@ export const ShowLeanPanel = ({ source, open, onClose }: ShowLeanPanelProps) => 
           Your moves become tactics. Each one builds a term of <code>Reach</code> using <code>Reach.step … rfl rfl</code>, and the Lean kernel re-checks every step by
           reduction. <code>#print axioms</code> must not mention <code>sorryAx</code>.
         </p>
+        <details className="lean-proved" data-testid="lean-proved">
+          <summary>Proved in Lean, once and for all</summary>
+          <ul>
+            {PROVED.map(([name, statement]) => (
+              <li key={name}>
+                <code>{name}</code>
+                <span>{statement}</span>
+              </li>
+            ))}
+          </ul>
+          <p>
+            These theorems live in <code>ProofPuzzle/Lemmas.lean</code>. The in-browser preview is checked against them with property-based tests, and the Lean kernel
+            has the final say on every level.
+          </p>
+        </details>
         {lines ? (
           <pre className="lean-source" tabIndex={0} role="region" aria-label="Lean source">
             <code>{lines}</code>

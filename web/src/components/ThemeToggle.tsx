@@ -3,7 +3,10 @@ import { applyTheme, storedTheme, storeTheme, type Theme } from "../lib/theme.js
 import { MoonIcon, SunIcon } from "./icons.js";
 
 export const ThemeToggle = () => {
-  const [theme, setTheme] = useState<Theme>(() => (document.documentElement.dataset.theme === "light" ? "light" : storedTheme()));
+  const [theme, setTheme] = useState<Theme>(() => {
+    const applied = document.documentElement.dataset.theme;
+    return applied === "light" || applied === "dark" ? applied : storedTheme();
+  });
   const next: Theme = theme === "dark" ? "light" : "dark";
 
   const toggle = () => {

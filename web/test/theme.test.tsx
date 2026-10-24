@@ -12,18 +12,13 @@ beforeEach(() => {
 afterEach(() => localStorage.clear());
 
 describe("theme", () => {
-  it("follows the OS preference when nothing is saved", () => {
-    expect(parseTheme(null)).toBe("dark");
-    expect(parseTheme("nonsense")).toBe("dark");
-    expect(storedTheme()).toBe("dark");
-    const original = window.matchMedia;
-    window.matchMedia = ((query: string) => ({ ...original(query), matches: query.includes("light") })) as typeof window.matchMedia;
+  it("defaults to light when nothing valid is saved, whatever the OS prefers", () => {
     expect(parseTheme(null)).toBe("light");
+    expect(parseTheme("nonsense")).toBe("light");
     expect(storedTheme()).toBe("light");
-    window.matchMedia = original;
   });
 
-  it("lets a saved choice win over the OS preference", () => {
+  it("lets a saved dark choice win over the default", () => {
     localStorage.setItem(THEME_KEY, "dark");
     expect(storedTheme()).toBe("dark");
   });

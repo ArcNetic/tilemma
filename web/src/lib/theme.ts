@@ -2,21 +2,15 @@ export type Theme = "dark" | "light";
 
 export const THEME_KEY = "tilemma-theme";
 
-export const systemTheme = (): Theme => {
-  try {
-    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-  } catch {
-    return "dark";
-  }
-};
+export const DEFAULT_THEME: Theme = "light";
 
-export const parseTheme = (value: string | null | undefined): Theme => (value === "light" || value === "dark" ? value : systemTheme());
+export const parseTheme = (value: string | null | undefined): Theme => (value === "light" || value === "dark" ? value : DEFAULT_THEME);
 
 export const storedTheme = (): Theme => {
   try {
     return parseTheme(localStorage.getItem(THEME_KEY));
   } catch {
-    return systemTheme();
+    return DEFAULT_THEME;
   }
 };
 

@@ -379,15 +379,15 @@ button.quiet:hover:not(:disabled) {
 /* Boards. Cell size comes from the room the stage leaves, not from fixed breakpoints. */
 
 .board-panel {
-  --chrome-x: 80px;
-  --chrome-y: 116px;
+  --chrome-x: 88px;
+  --chrome-y: 124px;
   /* Small enough that a 6x6 board still clears the target in the narrowest stage the divider allows. */
   --cell-min: 22px;
   --cell-size: clamp(
     var(--cell-min),
     min(
-      (var(--avail-w, 320px) - var(--chrome-x) - (var(--cols, 2) - 1) * 4px) / var(--cols, 2),
-      (var(--avail-h, 320px) - var(--chrome-y) - (var(--rows, 2) - 1) * 4px) / var(--rows, 2)
+      (var(--avail-w, 320px) - var(--chrome-x) - (var(--cols, 2) - 1) * var(--cell-gap)) / var(--cols, 2),
+      (var(--avail-h, 320px) - var(--chrome-y) - (var(--rows, 2) - 1) * var(--cell-gap)) / var(--rows, 2)
     ),
     132px
   );
