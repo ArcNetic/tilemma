@@ -1,6 +1,6 @@
 import { useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import type { Diagnostic } from "@pp/engine";
+import { buildLeanFile, levelBoards, type Diagnostic } from "@pp/engine";
 import { ErrorBanner, HintBox, OfflineBanner } from "./components/Banners.js";
 import { BoardView } from "./components/BoardView.js";
 import { CodeEditor, type CodeEditorHandle } from "./components/CodeEditor.js";
@@ -123,7 +123,12 @@ export const App = () => {
   const helperNames = useMemo(() => helperNamesIn(state.draft.helpers), [state.draft.helpers]);
   const failureLine = view ? firstFailureLine(view.diagnostics) : undefined;
 
-  const generatedLean = state.verified?.response.generatedLean;
+  // Production servers leave the file out of the reply, so rebuild it with the same pure template the server used.
+  const generatedLean = useMemo(() => {
+    const verified = state.verified;
+    if (!verified || !level || verified.levelId !== level.id) return undefined;
+    return verified.response.generatedLean ?? buildLeanFile(levelBoards(level), verified.draft.helpers, verified.draft.proof).source;
+  }, [state.verified, level]);
   const copyProof = async () => {
     const text = showHelpers ? `${state.draft.helpers}\n\n${state.draft.proof}` : state.draft.proof;
     try {

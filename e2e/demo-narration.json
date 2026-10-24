@@ -1,0 +1,14 @@
+[
+  { "id": "intro", "text": "This is Tilemma. It looks like a sliding tile puzzle. But every solution you write is a real Lean 4 proof, and the Lean kernel checks it." },
+  { "id": "tour", "text": "Here's your board, and here's the target. You change the board by writing moves, one per line. Swap two blocks, paint one, or rotate an arrow." },
+  { "id": "first", "text": "As I type, a pure TypeScript copy of the rules previews each step instantly. When I pause, the proof goes to the server, Lean compiles it, and the board is verified." },
+  { "id": "error", "text": "Mistakes are precise. Here I try to move a locked block. Lean rejects that step, and the exact block that broke the proof turns red, with the reason in plain English." },
+  { "id": "fix", "text": "Fix the line, and the whole proof goes through." },
+  { "id": "fp", "text": "Under the hood, it's functional programming all the way down. Each move is a pure function from board to board. No state, no side effects. A proof is just a fold of step over a list of moves, and reaching the target is an inductive proposition. Every line you write adds one step to the proof term." },
+  { "id": "helpers", "text": "Because moves are data, you can write your own functions. This helper returns a list of moves. Three clockwise turns make one counter clockwise turn, and run applies it." },
+  { "id": "timeline", "text": "Every intermediate board is an immutable value, so the timeline can replay the proof, step by step, forwards or backwards." },
+  { "id": "boss", "text": "The final level brings it all together. Mirror maps flip row over every row and flattens the result. Diag maps a rotation down the diagonal. Six lines of higher order functions solve a five by five board." },
+  { "id": "lean", "text": "Show Lean reveals the exact file that Lean checked. Each tactic closes its step by r f l, so the kernel recomputes every board itself. A buggy tactic could reject a good proof, but never accept a bad one. And we prove general laws too. Four rotations are the identity, painting is idempotent, and moves compose over append." },
+  { "id": "engineering", "text": "The TypeScript preview is property tested against those same laws, and differentially tested against Lean. Warm Lean workers answer in about fifty milliseconds, behind a strict sanitizer and sandbox." },
+  { "id": "outro", "text": "Tilemma. Slide tiles. Prove it. Pure functions you can play, and proofs you can see." }
+]
