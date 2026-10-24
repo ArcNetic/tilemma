@@ -66,7 +66,7 @@ const installOverlays = (p: Page) =>
       #demo-card h1 { font-size: 76px; line-height: 1.02; margin: 0 0 18px; letter-spacing: -.03em; }
       #demo-card h2 { font-size: 44px; line-height: 1.1; margin: 0 0 26px; letter-spacing: -.02em; }
       #demo-card p { font-size: 24px; color: #454c58; margin: 0 0 12px; line-height: 1.45; }
-      #demo-card pre { font-family: "IBM Plex Mono", Consolas, monospace; font-size: 27px; line-height: 1.6; margin: 0 0 22px;
+      #demo-card pre { font-family: "IBM Plex Mono", Consolas, monospace; font-size: 23px; white-space: pre; line-height: 1.6; margin: 0 0 22px;
         padding: 26px 32px; border-radius: 16px; background: #fff; border: 1px solid #d8dce3; box-shadow: 0 12px 32px rgba(16,24,40,.08); }
       #demo-card .k { color: #1d4ed8; font-weight: 600; } #demo-card .t { color: #076a5d; } #demo-card .c { color: #8a919c; }
       #demo-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
@@ -120,6 +120,7 @@ const showCard = async (html: string) => {
     card.id = "demo-card";
     card.innerHTML = `<div class="inner">${markup}</div>`;
     document.body.append(card);
+    document.getElementById("demo-cursor")!.style.visibility = "hidden";
     requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add("show")));
   }, html);
   await pause(700);
@@ -128,7 +129,10 @@ const showCard = async (html: string) => {
 const hideCard = async () => {
   await page.evaluate(() => document.getElementById("demo-card")?.classList.remove("show"));
   await pause(700);
-  await page.evaluate(() => document.getElementById("demo-card")?.remove());
+  await page.evaluate(() => {
+    document.getElementById("demo-card")?.remove();
+    document.getElementById("demo-cursor")!.style.visibility = "visible";
+  });
 };
 
 const proofEditor = () => page.locator("[data-testid=editor-proof] .cm-content");
@@ -215,13 +219,12 @@ await closeSuccess();
 
 await scene("fp", async () => {
   await showCard(`<div class="eyebrow">Under the hood</div><h2>Moves are pure functions. A proof is a fold.</h2>
-    <pre><span class="k">def</span> step : <span class="t">Move</span> → <span class="t">Board</span> → <span class="t">Board</span>     <span class="c">-- no state, no side effects</span>
+    <pre><span class="k">def</span> step : <span class="t">Move</span> → <span class="t">Board</span> → <span class="t">Board</span>              <span class="c">-- no state, no side effects</span>
+<span class="k">def</span> applyAll : <span class="t">List Move</span> → <span class="t">Board</span> → <span class="t">Option Board</span>  <span class="c">-- a fold of step</span>
 
-applyAll moves board  <span class="c">≡</span>  moves.foldl (flip step) board
-
-<span class="k">inductive</span> <span class="t">Reach</span> (target : <span class="t">Board</span>) : <span class="t">Board</span> → <span class="t">Prop</span>
-  | refl : <span class="t">Reach</span> target target
-  | step : legal m b → step m b = b' → <span class="t">Reach</span> target b' → <span class="t">Reach</span> target b</pre>
+<span class="k">inductive</span> <span class="t">Reach</span> (t : <span class="t">Board</span>) : <span class="t">Board</span> → <span class="t">Prop</span>
+  | done : <span class="t">Reach</span> t t
+  | step : legal m b = true → step m b = b' → <span class="t">Reach</span> t b' → <span class="t">Reach</span> t b</pre>
     <p>Every line you write adds one <b>Reach.step</b>. A cleared level <i>is</i> the proof term.</p>`);
   await pause(Math.max(0, (durations.fp ?? 10) * 1000 - 1200));
   await hideCard();
@@ -285,6 +288,7 @@ await scene("outro", async () => {
     <p>Play it: <b>${new URL(BASE).host}</b></p>`);
 }, 1800);
 
+scenes.push({ id: "end", t: Date.now() / 1000 });
 await cdp.send("Page.stopScreencast");
 await context.close();
 await browser.close();
