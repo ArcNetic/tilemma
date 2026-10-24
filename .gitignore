@@ -9,3 +9,5 @@ playwright-report/
 .repl/
 .tmp-*
 
+e2e/record-demo.ts
+e2e/demo-narration.json
