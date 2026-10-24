@@ -50,12 +50,14 @@ test.describe("core loop", () => {
     expect(await boardCodes(page)).toEqual([["R.", "G."], ["B.", "Y."]]);
   });
 
-  test("an incomplete proof highlights the blocks that still differ", async ({ page }) => {
+  test("an incomplete proof counts the blocks that still differ, and highlights them only on request", async ({ page }) => {
     await start(page);
     await typeProof(page, ["swap (0, 0) (0, 1)"]);
     await expect.poll(() => statusText(page), { timeout: 20_000 }).toContain("Not there yet");
-    await expect(page.locator("[data-testid=board-current] .cell-mismatch")).toHaveCount(2);
+    await expect(page.locator("[data-testid=board-current] .cell-mismatch")).toHaveCount(0);
     expect(await statusText(page)).toContain("2 blocks still differ");
+    await page.getByLabel("Highlight blocks that differ from the target").check();
+    await expect(page.locator("[data-testid=board-current] .cell-mismatch")).toHaveCount(2);
   });
 
   test("a move after the board already matches is called out", async ({ page }) => {

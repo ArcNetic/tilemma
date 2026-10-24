@@ -171,8 +171,12 @@ describe("selectView and derive", () => {
     expect(stepped.atEnd).toBe(false);
   });
 
-  it("highlights differing blocks on request", () => {
-    const state = run([{ type: "toggleDiff" }], withProof("swap (0, 0) (0, 1)"));
+  it("highlights differing blocks only on request", () => {
+    const plain = withProof("swap (0, 0) (0, 1)");
+    const quiet = derive(plain, selectView(plain)!);
+    expect(quiet.mismatchCells).toEqual([]);
+    expect(quiet.mismatchCount).toBe(2);
+    const state = run([{ type: "toggleDiff" }], plain);
     const derived = derive(state, selectView(state)!);
     expect(derived.mismatchCells).toEqual([[1, 0], [1, 1]]);
     expect(derived.mismatchCount).toBe(2);

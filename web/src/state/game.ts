@@ -197,7 +197,7 @@ export const derive = (state: GameState, view: View): Derived => {
   const shown = frame.board.length > 0 ? parseBoard(frame.board) : [];
   const mismatch = target.length > 0 && shown.length > 0 ? diff(shown, target) : [];
   const failureCells = view.diagnostics.filter((d) => d.pane === "proof" && d.cells).flatMap((d) => d.cells ?? []);
-  const showMismatch = atEnd && (state.showDiff || view.status === "INCOMPLETE");
+  const showMismatch = atEnd && state.showDiff;
   const verified = verifiedFor(state);
   return {
     view,
